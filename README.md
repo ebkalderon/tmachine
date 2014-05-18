@@ -3,7 +3,7 @@
   | | |   | -_|    | | | |     | -_|  | | | | .'|  _|   | |   | -_|
   |_| |_|_|___|    |_| |_|_|_|_|___|  |_|_|_|__,|___|_|_|_|_|_|___|
 
-tmachine - An interactive C++ "translation" of _The Time Machine_ (the Holt version)
+tmachine - An interactive C++ "translation" of _The Time Machine_ (Holt version)
 Copyright (c) 2014 Eyal Kalderon
 
 This is a creative response to the short science fiction novella _The Time Machine_ by
