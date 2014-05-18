@@ -41,10 +41,10 @@
 ### Example Execution Flow
 * At the beginning of the story (`main.cpp`), the Timeline's year counter is set to 1895.
 * Two Events are created from within a Chapter01 object like so:
-  ``` cpp
-  Event victorianEngland(1895, "Richmond", vicCharacters, vicObjects) { ... }
-  Event futureEarth(802701, "Eloi Community", futCharacters, futObjects) { ... }
-  ```
+``` cpp
+Event victorianEngland(1895, "Richmond", vicCharacters, vicObjects) { ... }
+Event futureEarth(802701, "Eloi Community", futCharacters, futObjects) { ... }
+```
 * The array `vicCharacters` contains the protagonist, and `vicObjects` contains a TimeMachine object "tmachine". Similarly, `futCharacters` contains several Eloi and Morlocks, and `futObjects` contains an Eloi dwelling and a forest.
 * `victorianEngland` is submitted to the Timeline with its appropriate parameters and executed.
 * From within `victorianEngland`, the TimeMachine object has its pilot property set to the protagonist. `tmachine.travel(802701)` is invoked, which modifies the Timeline's year counter from 1895 to 802701.
