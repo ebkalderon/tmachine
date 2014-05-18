@@ -1,0 +1,8 @@
+# Ignore the build and lib directories
+build
+
+# Ignore any prebuilt binaries
+bin/*
+
+# Ignore hidden backup files
+*~
