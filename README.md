@@ -9,3 +9,5 @@ Please note that these source files are not pseudocode. Unlike most creative Eng
 But of course, the greatest technical achievement lies not in the actual construction of this program, but rather in its source code. If you know some C++ or you're a curious reader or a computer science student, you will enjoy flipping through the code; it's as much fun seeing the unconventional C++ interpretations of the plot as it is watching it unfold from a birds-eye view in RAM.
 
 If you enjoyed reading _The Time Machine_ or any of H.G. Wells spectacular novels as much as I did, you will undoubtedly enjoy reading through the source and stepping through this program as it runs.
+
+> Want to know why the program was written the way it was? Read the design document in the 'doc' folder.

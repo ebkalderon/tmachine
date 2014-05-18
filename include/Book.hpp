@@ -10,9 +10,9 @@ class Book
 {
     public:
         Book(const std::string& title, const std::string& author);
-        ~Book(){};
+        ~Book();
 
-        void startReading(){};
+        void startReading();
 
     private:
         Chapter* mChapters[14];
