@@ -46,9 +46,10 @@ Event victorianEngland(1895, "Richmond", vicCharacters, vicObjects) { ... }
 Event futureEarth(802701, "Eloi Community", futCharacters, futObjects) { ... }
 ```
 * The array `vicCharacters` contains the protagonist, and `vicObjects` contains a TimeMachine object "tmachine". Similarly, `futCharacters` contains several Eloi and Morlocks, and `futObjects` contains an Eloi dwelling and a forest.
-* `victorianEngland` is submitted to the Timeline with its appropriate parameters and executed.
+* `victorianEngland` and `futureEarth` are submitted to the Timeline with its appropriate parameters.
+* The Events are executed in chronological order, as if time were flowing normally.
 * From within `victorianEngland`, the TimeMachine object has its pilot property set to the protagonist. `tmachine.travel(802701)` is invoked, which modifies the Timeline's year counter from 1895 to 802701.
-* Now, from within the `victorianEngland` Event, we can access elements of `futureEarth` by using the `tmachine.get...()` family of methods. Our protagonist has just traveled through time, simultaneously able to interact with the future and past, yet still tied to his original time frame. This is consistent with real-world paradoxes like "how does a time traveler age?"
+* Now, from within the `victorianEngland` Event, we can access elements of `futureEarth` by using the `tmachine.get...()` family of methods. Our protagonist has just traveled through time, simultaneously able to interact with future events, yet still tied to his original time frame. This is consistent with real-world paradoxes like "how does a time traveler age?"
 
 ### Unsolved Caveats
 1. What happens when `tmachine.travel()` is invoked when there are multiple Events that occur on the same date?
