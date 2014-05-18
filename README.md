@@ -1,6 +1,7 @@
 # The Time Machine
 
 tmachine - An interactive C++ "translation" of _The Time Machine_
+
 Copyright (c) 2014 Eyal Kalderon
 
 This is a creative response to the short science fiction novella _The Time Machine_ by H.G. Wells (1895, Holt text), suggested as a cumulative high school project for English 12 Honors.
