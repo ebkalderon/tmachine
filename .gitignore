@@ -6,3 +6,4 @@ bin/*
 
 # Ignore hidden backup files
 *~
+*.swp
