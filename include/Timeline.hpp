@@ -1,30 +1,36 @@
 #ifndef TIMELINE_HPP
 #define TIMELINE_HPP
 
+#include <utility>
 #include <vector>
 #include "Core.hpp"
 
 class Character;
+// friend class TimeMachine;
 // http://stackoverflow.com/questions/4295432/typedef-function-pointer
-typedef void (*Event)(Year, Character);
-       
+typedef void (*Event)(std::vector<Character*>, const std::string&);
+     
 class Timeline
 {
     public:
         Timeline(const Year& current);
         ~Timeline();
                 
-        void clearChronology();
-        void insertEvent(Event* newEvent);
-        void removeEvent(int index);
-        void reorderEvents(int index1, int index2);
+        void clear();
+        void insertEntry(const Year& year, const Event& event);
+        void removeEntry(int index);
+        void swapEntries(int index1, int index2);
+        void update(std::vector<Character*> characters, const std::string& location);
                 
-        std::vector<Event*>* getChronology();
+        std::vector<std::pair<Year, Event>>* getChronology();
         Year* getCurrentYear();
         Event* getEvent(int index);
             
     private:
-        std::vector<Event*> mChronology;
+        void sortAllEvents();
+
+        std::vector<std::pair<Year, Event>> mChronBuffer;
+        std::vector<std::pair<Year, Event>> mChronology;
         Year mYear;
 };
 

@@ -1,7 +1,6 @@
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
 
-#include <string>
 #include "Core.hpp"
 #include "Timeline.hpp"
 
@@ -11,11 +10,18 @@ class Character
         enum Emotion
         {
             Afraid,
+            Awed,
             Betrayed,
+            Confident,
             Conflicted,
+            Curious,
+            FeigningInterest,
             Happy,
             Indignant,
+            Irritated,
             Neutral,
+            Offended,
+            Patient,
             Sad
         };
    
@@ -30,21 +36,26 @@ class Character
         {
             Enoi,
             Human,
+            Morlock,
             Unknown
         };
 
-        Character(const std::string& name, const Type& species){};
-        ~Character(){};
+        Character(const std::string& name, const Type& species);
+        ~Character();
 
         void die();
+        void die(const std::string& causeOfDeath);
+        void faint(const bool& unconscious);
+        void laugh();
         void speak(const std::string& words);
+        void smile();
         void think(const std::string& words);
-        void think(Event* memory);
+        void think(Event memory, std::vector<Character*> characters, const std::string& location);
         
-        Emotion* getEmotion();
-        Gender* getGender();
-        std::string* getName();
-        Type* getType();
+        std::string getEmotion();
+        Gender getGender();
+        std::string getName();
+        Type getType();
         
         void setEmotion(const Emotion& feeling);
         void setGender(const Gender& gender){};
@@ -52,11 +63,10 @@ class Character
         void setType(const Type& species);
         
     private:
+        bool mConscious;
         Emotion mEmotion;
         std::string mName;
         Type mType;
 };
-
-Character* Narrator;
 
 #endif // CHARACTER_HPP
