@@ -34,16 +34,16 @@ void Timeline::swapEntries(int index1, int index2)
     mChronology[index2] = first;
 }
 
-void Timeline::update(std::vector<Character*> characters, const std::string& location)
+void Timeline::update(std::vector<Character>* characters, std::vector<Object>* objects, const std::string& location)
 {
     std::cout << "You're in " << location << ".\n";
     Event tmpEvent;
 
-    for (std::pair<Year, Event> ev : mChronBuffer)
+    for (std::pair<Year, Event> entry : mChronBuffer)
     {
-        tmpEvent = ev.second;
-        tmpEvent(characters, location);
-        mChronology.push_back(ev);
+        tmpEvent = entry.second;
+        tmpEvent(characters, objects, location);
+        mChronology.push_back(entry);
     }
 
     sortAllEvents();
@@ -56,9 +56,9 @@ std::vector<std::pair<Year, Event>>* Timeline::getChronology()
     return &mChronology;
 }
 
-Year* Timeline::getCurrentYear()
+Year Timeline::getCurrentYear()
 {
-    return &mYear;
+    return mYear;
 }
 
 Event* Timeline::getEvent(int index)
@@ -84,4 +84,13 @@ void Timeline::sortAllEvents()
             }
         }
     }
+
+    /* Uncomment this to check whether the events are sorted in
+    chronological order.
+
+    for (std::pair<Year, Event> entry : mChronology)
+    {
+        std::cout << entry.first << "\n";
+    }
+    */
 }

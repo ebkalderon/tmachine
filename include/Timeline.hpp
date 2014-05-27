@@ -6,9 +6,8 @@
 #include "Core.hpp"
 
 class Character;
-// friend class TimeMachine;
-// http://stackoverflow.com/questions/4295432/typedef-function-pointer
-typedef void (*Event)(std::vector<Character*>, const std::string&);
+class Object;
+typedef void (*Event)(std::vector<Character>*, std::vector<Object>*, const std::string&); // http://stackoverflow.com/questions/4295432/typedef-function-pointer
      
 class Timeline
 {
@@ -20,18 +19,18 @@ class Timeline
         void insertEntry(const Year& year, const Event& event);
         void removeEntry(int index);
         void swapEntries(int index1, int index2);
-        void update(std::vector<Character*> characters, const std::string& location);
+        void update(std::vector<Character>* characters, std::vector<Object>* objects, const std::string& location);
                 
         std::vector<std::pair<Year, Event>>* getChronology();
-        Year* getCurrentYear();
+        Year getCurrentYear();
         Event* getEvent(int index);
-            
+
+        Year mYear;
+
     private:
         void sortAllEvents();
-
         std::vector<std::pair<Year, Event>> mChronBuffer;
         std::vector<std::pair<Year, Event>> mChronology;
-        Year mYear;
 };
 
 #endif // TIMELINE_HPP

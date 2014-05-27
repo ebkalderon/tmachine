@@ -1,9 +1,8 @@
-#include "Core.hpp"
-
 #include "Book.hpp"
 #include "Chapter.hpp"
 #include "Chapter01.hpp"
 #include "Character.hpp"
+#include "Object.hpp"
 #include "Timeline.hpp"
 
 int main(int argc, char* argv[])
@@ -19,14 +18,12 @@ int main(int argc, char* argv[])
     ttm.setTimeline(&timeSpaceContinuum);
 
     // Define our core characters.
-    Character frameNarrator("Unidentified narrator", Character::Type::Unknown);
+    Character frameNarrator("The unidentified narrator", Character::Type::Unknown);
+    ttm.addCharacter(frameNarrator);
 
     Character protagonist("The Time Traveller", Character::Type::Human);
     protagonist.setGender(Character::Gender::Male);
-
-    ttm.addCharacters(&frameNarrator);
-    ttm.addCharacters(&protagonist);
-    ttm.setNarrator(&frameNarrator);
+    ttm.addCharacter(protagonist);
 
     // And off we go!
     ttm.startReading();

@@ -23,7 +23,7 @@
 ### Defining Chronological Events and Time Travel
 1. Events
   * **What is an event?** An event is an occurrence that occurs at a particular year. In essence, an event can contain location, a set of characters, and a set of objects.
-  * "Event" is a user-defined type. It's just a `void` callback with the following parameters: `std::vector<Character*> characters`, std::vector<Objects*> objects, and `const std::string& location`. 
+  * "Event" is a user-defined type. It's just a `void` callback with the following parameters: `std::vector<Character*> characters`, std::vector<Object*> objects, and `const std::string& location`. 
   * Events are submitted to the Timeline's temporary buffer with the `timeline.insertEntry(year, eventName)` method.
   * After `timeline.update()` is called from the current Chapter's `read()`, these new Events are executed in the order they were submitted, added to the Timeline, and sorted by year.
   * Characters or Objects that are "ephemeral" (that is, introduced and forgotten/destroyed in the same Event or Chapter) simply go out of scope when the Event/Chapter is done executing.

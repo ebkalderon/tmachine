@@ -1,4 +1,6 @@
 #include "Book.hpp"
+#include "Character.hpp"
+#include "Object.hpp"
 
 Book::Book(const std::string& title, const std::string& author)
 {
@@ -16,30 +18,33 @@ Book::~Book()
     std::cout << AnsiColors.normal << AnsiColors.lightYellow << "\nThe end.\n" << AnsiColors.normal;
 }
 
-void Book::addCharacters(Character* newchar)
+void Book::addCharacter(Character newPerson)
 {
     // Let's make newchar a persistent character (a character which exists across multiple chapters).
-    mCharacters.push_back(newchar); 
+    mCharacters.push_back(newPerson);
+}
+
+void Book::addObject(Object newObject)
+{
+    mObjects.push_back(newObject);
 }
 
 void Book::startReading()
 {   
     for (Chapter* ch : mChapters)
     {
-        ch->read(mCharacters, mTimeline);
+        ch->read(&mCharacters, &mObjects, mTimeline);
     }
 }
 
-
-std::vector<Character*>* Book::getCharacters()
+std::vector<Character>* Book::getCharacters()
 {
     return &mCharacters;
 }
 
-void Book::setNarrator(Character* person)
+std::vector<Object>* Book::getObjects()
 {
-    std::cout << person->getName() << " is now narrating.\n";
-    mNarrator = person;
+    return &mObjects;
 }
 
 void Book::setTimeline(Timeline* emptyTimeline)

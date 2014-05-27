@@ -2,7 +2,7 @@
 
 Copyright © 2014 Eyal Kalderon
 
-This is a creative response to the short science fiction novella _The Time Machine_ by H.G. Wells (1895, Holt text), intended as a cumulative high school project for English 12 HN.
+This is a creative response to the short science fiction novella _The Time Machine_ by H.G. Wells (1898, Heinemann text), intended as a cumulative high school project for English 12 HN.
 
 Please note that these source files are not pseudocode. Unlike most creative English pieces, this program (or should I say, novella) actually works. The source code provided is standards-compliant C++11 and has been tested on Arch/x64 with GCC. Stepping through the code in a debugger, analyzing the program's behavior in memory, and checking the stdout in a terminal (spoken dialogue) will let you follow the plot as it unfolds.
 

@@ -2,9 +2,9 @@
 #include "Timeline.hpp"
 
 // These are string versions of the 3 core enums, intended for text output.
-static const char *strEmotion[] = { "afraid", "awed", "feeling betrayed", "confident", "conflicted", "curious", "feigning interest", "happy", "indignant", "irritated", "feeling neutral", "offended", "patient", "sad" };  
 static const char *strGender[] = { "female", "neither", "male" };
-static const char *TypeEmotion[] = { "Eloi", "Human", "Morlock", "unknown" };
+static const char *strEmotion[] = { "afraid", "awed", "feeling betrayed", "confident", "conflicted", "curious", "feigning interest", "happy", "indignant", "irritated", "feeling neutral", "offended", "patient", "sad" };  
+static const char *strType[] = { "Eloi", "Human", "Morlock", "unknown" };
 
 Character::Character(const std::string& name, const Type& species)
 {
@@ -30,7 +30,6 @@ void Character::die(const std::string& causeOfDeath)
     std::cout << AnsiColors.red << AnsiColors.bold << mName << " has died of " << causeOfDeath << ".\n";
 }
 
-
 void Character::faint(const bool& unconscious)
 {
     mConscious = unconscious;
@@ -39,6 +38,11 @@ void Character::faint(const bool& unconscious)
 void Character::laugh()
 {
     std::cout << mName << " laughs.\n";
+}
+
+void Character::listen(Character* character)
+{
+    std::cout << mName << " is listening attentively to " << character->getName() << ".\n";
 }
 
 void Character::smile()
@@ -67,13 +71,18 @@ void Character::think(const std::string& words)
     std::cout << AnsiColors.green << AnsiColors.italic << mName << " thought: \"" << words << "\"\n";
 }
 
-void Character::think(Event memory, std::vector<Character*> characters, const std::string& location)
+void Character::think(Event memory, std::vector<Character>* characters, std::vector<Object>* objects, const std::string& location)
 {
     // Execute an Event without direct access to the Timeline.
     std::cout << AnsiColors.green << AnsiColors.italic << mName << " reminisces...\n";
     Event tmpEvent = memory;
-    tmpEvent(characters, location);
+    tmpEvent(characters, objects, location);
     std::cout << AnsiColors.green << AnsiColors.italic << mName << " snaps out of his thought.\n";
+}
+
+std::string Character::getGender()
+{
+    return strGender[mGender];
 }
 
 std::string Character::getEmotion()
@@ -84,6 +93,16 @@ std::string Character::getEmotion()
 std::string Character::getName()
 {
     return mName;
+}
+
+std::string Character::getType()
+{
+    return strType[mType];
+}
+
+void Character::setGender(const Gender& gender)
+{
+    mGender = gender;
 }
 
 void Character::setEmotion(const Emotion& feeling)

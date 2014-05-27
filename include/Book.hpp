@@ -7,6 +7,7 @@
 //#include "Chapter02.hpp"
 //#include "Chapter03.hpp"
 
+class Object;
 class Timeline;
 
 class Book
@@ -15,19 +16,21 @@ class Book
         Book(const std::string& title, const std::string& author);
         ~Book();
 
-        void addCharacters(Character* newperson);
+        void addCharacter(Character newPerson);
+        void addObject(Object newObject);
         void startReading();
 
-        std::vector<Character*>* getCharacters();
+        std::vector<Character>* getCharacters();
+        std::vector<Object>* getObjects();
 
-        void setNarrator(Character* person);
         void setTimeline(Timeline* emptyTimeline);
 
     private:
         //Chapter* mChapters[14];
         Chapter* mChapters[1];
         Character* mNarrator;
-        std::vector<Character*> mCharacters;
+        std::vector<Character> mCharacters;
+        std::vector<Object> mObjects;
         std::string mAuthor;
         std::string mTitle;
         Timeline* mTimeline;

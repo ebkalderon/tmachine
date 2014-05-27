@@ -47,23 +47,25 @@ class Character
         void die(const std::string& causeOfDeath);
         void faint(const bool& unconscious);
         void laugh();
+        void listen(Character* character);
         void speak(const std::string& words);
         void smile();
         void think(const std::string& words);
-        void think(Event memory, std::vector<Character*> characters, const std::string& location);
+        void think(Event memory, std::vector<Character>* characters, std::vector<Object>* objects, const std::string& location);
         
         std::string getEmotion();
-        Gender getGender();
+        std::string getGender();
         std::string getName();
-        Type getType();
+        std::string getType();
         
         void setEmotion(const Emotion& feeling);
-        void setGender(const Gender& gender){};
+        void setGender(const Gender& gender);
         void setName(const std::string& name);
         void setType(const Type& species);
         
     private:
         bool mConscious;
+        Gender mGender;
         Emotion mEmotion;
         std::string mName;
         Type mType;

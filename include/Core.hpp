@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <typeinfo>
 
 typedef int Year;
 
@@ -15,12 +16,14 @@ static struct AnsiColors
     char unitalic[6] = { 0x1b, '[', '2', '3', 'm', 0 };
     char lightBlack[8] = { 0x1b, '[', '1', ';', '3', '0', 'm', 0 };
     char lightBlue[8] = { 0x1b, '[', '1', ';', '3', '4', 'm', 0 };
+    char lightCyan[8] = { 0x1b, '[', '1', ';', '3', '6', 'm', 0 };
     char lightGreen[8] = { 0x1b, '[', '1', ';', '3', '2', 'm', 0 };
     char lightMagenta[8] = { 0x1b, '[', '1', ';', '3', '5', 'm', 0 };
     char lightRed[8] = { 0x1b, '[', '1', ';', '3', '1', 'm', 0 };
     char lightYellow[8] = { 0x1b, '[', '1', ';', '3', '3', 'm', 0 };
     char black[8] = { 0x1b, '[', '0', ';', '3', '0', 'm', 0 };
     char blue[8] = { 0x1b, '[', '0', ';', '3', '4', 'm', 0 };
+    char cyan[8] = { 0x1b, '[', '0', ';', '3', '6', 'm', 0 };
     char green[8] = { 0x1b, '[', '0', ';', '3', '2', 'm', 0 };
     char magenta[8] = { 0x1b, '[', '0', ';', '3', '5', 'm', 0 };
     char red[8] = { 0x1b, '[', '0', ';', '3', '1', 'm', 0 };
