@@ -7,7 +7,8 @@
 
 int main(int argc, char* argv[])
 {
-    system("clear");
+    // Clear the screen buffer and wait.
+    clearScreen;
 
     // The story begins! Let's create our book as a collection of chapters.
     Book ttm("The Time Machine", "H.G. Wells");

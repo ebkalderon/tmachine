@@ -1,9 +1,8 @@
 #include "Character.hpp"
-#include "Timeline.hpp"
 
 // These are string versions of the 3 core enums, intended for text output.
 static const char *strGender[] = { "female", "neither", "male" };
-static const char *strEmotion[] = { "afraid", "awed", "feeling betrayed", "confident", "conflicted", "curious", "feigning interest", "happy", "indignant", "irritated", "feeling neutral", "offended", "patient", "sad" };  
+static const char *strEmotion[] = { "afraid", "awestruck", "feeling betrayed", "cautious", "cheerful", "confident", "confused", "curious", "determined", "disbelieving", "feigning interest", "indignant", "irritated", "feeling neutral", "offended", "patient", "puzzled", "sad", "in deep thought" };  
 static const char *strType[] = { "Eloi", "Human", "Morlock", "unknown" };
 
 Character::Character(const std::string& name, const Type& species)
@@ -12,11 +11,18 @@ Character::Character(const std::string& name, const Type& species)
     mName = name;
     mType = species;
     mConscious = true;
+    mEyesOpen = 1;
 }
 
 Character::~Character()
 {
     // Dummy destructor...
+}
+
+void Character::action(const std::string& verb, Object* object)
+{
+    if (mConscious)
+        std::cout << AnsiColors.bold << mName << " " << verb << " " << object->getName() << ".\n" << AnsiColors.normal;
 }
 
 void Character::die()
@@ -33,21 +39,62 @@ void Character::die(const std::string& causeOfDeath)
 void Character::faint(const bool& unconscious)
 {
     mConscious = unconscious;
+    mEyesOpen = !mConscious;
+    std::cout << AnsiColors.red << AnsiColors.bold << mName << (unconscious ? " has fainted.\n" : " has regained consciousness.\n");
+}
+
+void Character::frown()
+{
+    if (mConscious)
+        std::cout << AnsiColors.bold << mName << " frowns.\n" << AnsiColors.normal;
+}
+
+void Character::hold(Object* object)
+{
+    std::cout << AnsiColors.bold << mName << " holds the " << object->getName() << ".\n" << AnsiColors.normal;
 }
 
 void Character::laugh()
 {
-    std::cout << mName << " laughs.\n";
+    if (mConscious)
+        std::cout << AnsiColors.bold << mName << " laughs.\n" << AnsiColors.normal;
 }
 
-void Character::listen(Character* character)
+void Character::lookAt(Character* person)
 {
-    std::cout << mName << " is listening attentively to " << character->getName() << ".\n";
+    if (mConscious)
+        std::cout << AnsiColors.bold << mName << " looks at " << person->getName() << ".\n" << AnsiColors.normal;
+}
+
+void Character::lookAt(Object* object)
+{
+    if (mConscious)
+        std::cout << AnsiColors.bold << mName << " looks at " << object->getName() << ".\n" << AnsiColors.normal;
+}
+
+void Character::listen(Character* speaker)
+{
+    if (mConscious)
+        std::cout << AnsiColors.bold << mName << " is listening attentively to " << speaker->getName() << ".\n" << AnsiColors.normal;
+}
+
+void Character::openEyes(const int& open)
+{
+    mEyesOpen = open;
+    std::cout << AnsiColors.bold << mName;
+
+    if (open == 0)
+        std::cout << "'s eyes close.\n" << AnsiColors.normal;
+    else if (open == 1)
+        std::cout << "'s eyes open.\n" << AnsiColors.normal;
+    else
+        std::cout << " winks.\n" << AnsiColors.normal;
 }
 
 void Character::smile()
 {
-    std::cout << mName << " smiles.\n";
+    if (mConscious)
+        std::cout << AnsiColors.bold << mName << " smiles.\n" << AnsiColors.normal;
 }
 
 void Character::speak(const std::string& words)
@@ -68,16 +115,16 @@ void Character::think(const std::string& words)
     // multiple think() calls.
 
     // When speaking, names and text are colored bold italic green.
-    std::cout << AnsiColors.green << AnsiColors.italic << mName << " thought: \"" << words << "\"\n";
+    std::cout << AnsiColors.green << AnsiColors.italic << mName << " thought: " << words << "\n" << AnsiColors.normal;
 }
 
 void Character::think(Event memory, std::vector<Character>* characters, std::vector<Object>* objects, const std::string& location)
 {
     // Execute an Event without direct access to the Timeline.
-    std::cout << AnsiColors.green << AnsiColors.italic << mName << " reminisces...\n";
+    std::cout << AnsiColors.green << AnsiColors.italic << mName << " reminisces...\n" << AnsiColors.normal;
     Event tmpEvent = memory;
     tmpEvent(characters, objects, location);
-    std::cout << AnsiColors.green << AnsiColors.italic << mName << " snaps out of his thought.\n";
+    std::cout << AnsiColors.green << AnsiColors.italic << mName << " snaps out of his thought.\n" << AnsiColors.normal;
 }
 
 std::string Character::getGender()
@@ -108,5 +155,5 @@ void Character::setGender(const Gender& gender)
 void Character::setEmotion(const Emotion& feeling)
 {
     mEmotion = feeling;
-    std::cout << mName << " is " << getEmotion() << ".\n";
+    std::cout << AnsiColors.bold << mName << " is " << getEmotion() << ".\n" << AnsiColors.normal;
 }

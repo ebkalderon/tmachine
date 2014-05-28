@@ -1,11 +1,18 @@
 #ifndef CORE_HPP
 #define CORE_HPP
 
+#include <chrono>
+#include <cstdlib>
 #include <iostream>
 #include <string>
+#include <thread>
 #include <typeinfo>
 
-typedef int Year;
+#ifndef __unix__
+#include <windows.h>
+#endif
+
+typedef unsigned int Year;
 
 static struct AnsiColors
 {
@@ -29,5 +36,15 @@ static struct AnsiColors
     char red[8] = { 0x1b, '[', '0', ';', '3', '1', 'm', 0 };
     char yellow[8] = { 0x1b, '[', '0', ';', '3', '3', 'm', 0 };
 } AnsiColors;
+
+static std::chrono::milliseconds Wait2000 (2000);
+
+#ifdef __unix__
+    #define sleep std::this_thread::sleep_for(Wait2000)
+    #define clearScreen system("clear")
+#else
+    #define sleep Sleep(2000)
+    #define clearScreen system("cls")
+#endif
 
 #endif // CORE_HPP

@@ -15,7 +15,8 @@ Book::Book(const std::string& title, const std::string& author)
 Book::~Book()
 {
     // The book is finally over!
-    std::cout << AnsiColors.normal << AnsiColors.lightYellow << "\nThe end.\n" << AnsiColors.normal;
+    std::cout << AnsiColors.lightMagenta << "<No more chapters>\n" << AnsiColors.normal;
+    std::cout << AnsiColors.lightYellow << "\nThe end.\n" << AnsiColors.normal;
 }
 
 void Book::addCharacter(Character newPerson)

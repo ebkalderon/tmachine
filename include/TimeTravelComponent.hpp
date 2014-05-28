@@ -3,6 +3,7 @@
 
 #include "Core.hpp"
 
+class Character;
 class Timeline;
 
 class TimeTravelComponent
@@ -12,6 +13,7 @@ class TimeTravelComponent
         ~TimeTravelComponent();
 
         void travel(const Year& destination);
+        Character* pilot;
 
     private:
         Timeline* mTimeline;
