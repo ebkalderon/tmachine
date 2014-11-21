@@ -54,6 +54,7 @@ void futureEarth(futCharacters, futObjects, "Eloi Community") { ... }
 * The Events are executed in chronological order, as if time were flowing normally.
 * From within `victorianEngland`, the TimeMachine object has its pilot property set to the protagonist and its timeline property set to the Book's Timeline object. `tmachine.engine->travel(802701)` is invoked, which modifies the Timeline's year counter from 1895 to 802701.
 * Now, from within the `victorianEngland` Event, we can access elements of `futureEarth` by using the `tmachine.get...()` family of methods. Our protagonist has just traveled through time, simultaneously able to interact with future events, yet still tied to his original time frame. This is consistent with real-world paradoxes like "how does a time traveler age?"
+
 ### Unsolved Caveats
 1. What happens when `tmachine.engine->travel()` is invoked when there are multiple Events that occur on the same date?
 2. Will the TimeMachine object allow Events to be modified or only read?
